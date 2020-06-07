@@ -1,4 +1,6 @@
 (executable
-  (name hello)
-  (public_name hello)
-  (libraries lib))
+  (name fetch)
+  (public_name fetch)
+  (modules fetch)
+  (libraries piaf logs logs.fmt fmt.tty))
+  

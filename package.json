@@ -1,12 +1,12 @@
 {
-  "name": "hello-ocaml",
+  "name": "fetch",
   "version": "0.1.0",
   "description": "OCaml workflow with Esy",
   "license": "MIT",
   "esy": {
     "build": "dune build -p #{self.name}",
     "release": {
-      "bin": "hello",
+      "bin": "fetch",
       "includePackages": [
         "root",
         "@opam/camomile"
@@ -14,16 +14,29 @@
     }
   },
   "scripts": {
-    "test": "esy x hello"
+    "test": "esy x fetch",
+    "exec": "esy b dune exec bin/fetch.exe"
   },
   "dependencies": {
     "@opam/dune": "*",
-    "@opam/lambda-term": "*",
     "@opam/lwt": "^4.0.0",
+    "@opam/piaf": "*",
+    "ocaml": "~4.6.0",
+    "@opam/httpaf": "*",
+    "@opam/httpaf-lwt": "*",
+    "@opam/httpaf-lwt-unix": "*",
+    "@opam/ssl": "*",
     "ocaml": "~4.6.0"
   },
   "devDependencies": {
     "@opam/merlin": "^3.0.3",
     "ocaml": "~4.6.0"
+  },
+  "resolutions": {
+    "@opam/piaf": "anmonteiro/piaf:piaf.opam#7f6e491dc",
+    "@opam/httpaf": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
+    "@opam/httpaf-lwt": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
+    "@opam/httpaf-lwt-unix": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
+    "@opam/ssl": "savonet/ocaml-ssl:ssl.opam#6b75facc5"
   }
 }
