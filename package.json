@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test": "esy x fetch",
-    "exec": "esy b dune exec bin/fetch.exe"
+    "exec": "esy b dune exec bin/fetch.exe",
+    "run": "dune exec bin/fetch.exe",
+    "build": "dune build"
   },
   "dependencies": {
     "@opam/dune": "*",
@@ -25,8 +27,7 @@
     "@opam/httpaf": "*",
     "@opam/httpaf-lwt": "*",
     "@opam/httpaf-lwt-unix": "*",
-    "@opam/ssl": "*",
-    "ocaml": "~4.6.0"
+    "@opam/ssl": "*"
   },
   "devDependencies": {
     "@opam/merlin": "^3.0.3",
@@ -35,8 +36,8 @@
   "resolutions": {
     "@opam/piaf": "anmonteiro/piaf:piaf.opam#7f6e491dc",
     "@opam/httpaf": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
-    "@opam/httpaf-lwt": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
-    "@opam/httpaf-lwt-unix": "anmonteiro/httpaf:httpaf.opam#19618b2158a",
+    "@opam/httpaf-lwt": "anmonteiro/httpaf:httpaf-lwt.opam#19618b2158a",
+    "@opam/httpaf-lwt-unix": "anmonteiro/httpaf:httpaf-lwt-unix.opam#19618b2158a",
     "@opam/ssl": "savonet/ocaml-ssl:ssl.opam#6b75facc5"
   }
 }
