@@ -35,21 +35,14 @@ let request host =
   let* response = Piaf.Client.Oneshot.get
     ~config:{ Piaf.Config.default with follow_redirects = true } (Uri.of_string host)
     ~headers in
-  let (stream, _) = Piaf.Body.to_string_stream response.body in
-  let open Lwt_syntax.Async in
-  let+ () = 
-    Lwt_stream.iter_s
-      (fun chunk -> Lwt_io.printf "%s" chunk)
-      stream
-  in
-  Ok ()
+  Piaf.Body.iter_string_s (fun chunk -> Lwt_io.printf "%s" chunk) response.body
 
 let () =
   setup_log (Some Logs.Debug);
   Lwt_main.run 
     (request api_host >|= function
-     | Ok () ->
-       ()
-     | Error e ->
+      | Ok () ->
+        ()
+      | Error e ->
         failwith (Piaf.Error.to_string e))
   
