@@ -17,8 +17,6 @@ module Lwt_syntax = struct
   end
 end
 
-let api_host = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-options?symbol=CCL&date=1591920000"
-
 let setup_log ?style_renderer level =
   Fmt_tty.setup_std_outputs ?style_renderer ();
   Logs.set_level level;
@@ -26,21 +24,16 @@ let setup_log ?style_renderer level =
   ()
 
 let request host =
-  let headers = [
-      ("x-rapidapi-host", "apidojo-yahoo-finance-v1.p.rapidapi.com");
-      ("x-rapidapi-key", "f017d34f2bmsh07c62cddedfaf64p115d31jsn1c964b4086f2");
-  ]
-  in
   let open Lwt_syntax.Result in
   let* response = Piaf.Client.Oneshot.get
     ~config:{ Piaf.Config.default with follow_redirects = true } (Uri.of_string host)
-    ~headers in
+     in
   Piaf.Body.iter_string_s (fun chunk -> Lwt_io.printf "%s" chunk) response.body
 
 let () =
   setup_log (Some Logs.Debug);
   Lwt_main.run 
-    (request api_host >|= function
+    (request "https://github.com" >|= function
       | Ok () ->
         ()
       | Error e ->
